@@ -43,6 +43,12 @@ export default function Home() {
             </motion.button>
           </Link>
         </div>
+
+        <div className="mt-16 flex justify-center gap-6 text-sm text-gray-500">
+          <Link href="/terms" className="hover:text-cyan-400 transition-colors">利用規約</Link>
+          <span>|</span>
+          <Link href="/privacy" className="hover:text-cyan-400 transition-colors">プライバシーポリシー</Link>
+        </div>
       </motion.div>
 
       {/* Background Elements */}

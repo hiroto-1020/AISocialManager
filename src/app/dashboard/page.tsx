@@ -49,18 +49,18 @@ export default function DashboardPage() {
 
     return (
         <div className="min-h-screen p-6 text-white">
-            <header id="dashboard-header" className="mb-12 flex items-center justify-between border-b border-gray-800 pb-6">
+            <header id="dashboard-header" className="mb-8 flex flex-col gap-6 border-b border-gray-800 pb-6 md:mb-12 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h1 className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+                    <h1 className="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 md:text-4xl">
                         ダッシュボード
                     </h1>
-                    <p className="text-gray-500">ようこそ、 {session?.user?.name} さん</p>
-                    <Link href="/help" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-800/50 px-4 py-2 text-sm font-bold text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-300 transition-all">
-                        <span className="flex items-center justify-center w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 text-xs">?</span>
-                        <span>使い方が分からない場合はこちら (HELP)</span>
+                    <p className="text-sm text-gray-500 md:text-base">ようこそ、 {session?.user?.name} さん</p>
+                    <Link href="/help" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-800/50 px-3 py-1.5 text-xs font-bold text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-300 transition-all md:px-4 md:py-2 md:text-sm">
+                        <span className="flex items-center justify-center w-4 h-4 rounded-full bg-cyan-500/20 text-cyan-400 text-[10px] md:w-5 md:h-5 md:text-xs">?</span>
+                        <span>使い方が分からない場合はこちら</span>
                     </Link>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 md:gap-4">
                     <Link href="/settings">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
@@ -68,18 +68,18 @@ export default function DashboardPage() {
                             className="rounded-full bg-gray-800 p-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors"
                             title="設定"
                         >
-                            <Settings size={24} />
+                            <Settings size={20} className="md:w-6 md:h-6" />
                         </motion.button>
                     </Link>
-                    <Link href="/projects/new">
+                    <Link href="/projects/new" className="flex-1 md:flex-none">
                         <motion.button
                             id="new-project-btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-6 py-3 font-bold text-cyan-400 ring-1 ring-cyan-500 hover:bg-cyan-500 hover:text-black transition-all"
+                            className="flex w-full items-center justify-center gap-2 rounded-full bg-cyan-500/10 px-4 py-3 font-bold text-cyan-400 ring-1 ring-cyan-500 hover:bg-cyan-500 hover:text-black transition-all md:w-auto md:px-6"
                         >
                             <Plus size={18} />
-                            新規プロジェクト
+                            <span className="text-sm md:text-base">新規プロジェクト</span>
                         </motion.button>
                     </Link>
                 </div>
