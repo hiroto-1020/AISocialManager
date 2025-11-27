@@ -41,7 +41,7 @@ export async function POST(req: Request) {
         return NextResponse.json(userWithoutPassword);
     } catch (error) {
         if (error instanceof z.ZodError) {
-            return NextResponse.json({ error: (error as any).errors }, { status: 400 });
+            return NextResponse.json({ error: (error as any).issues }, { status: 400 });
         }
         console.error(error);
         return NextResponse.json(
