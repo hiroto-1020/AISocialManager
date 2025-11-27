@@ -5,9 +5,9 @@ const config: CapacitorConfig = {
   appName: 'AISocialManager',
   webDir: 'public',
   server: {
-    url: 'https://ai-social-manager-fh7s2dksf-hirotos-projects-f5e9bbfe.vercel.app',
+    url: 'https://ai-social-manager-lilac.vercel.app',
     allowNavigation: [
-      'ai-social-manager-fh7s2dksf-hirotos-projects-f5e9bbfe.vercel.app',
+      'ai-social-manager-lilac.vercel.app',
       '*.vercel.app'
     ],
     androidScheme: 'https'
