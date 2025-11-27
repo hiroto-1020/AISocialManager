@@ -1,0 +1,152 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  projects      Project[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  xCredentials   XCredentials?
+  categories     Category[]
+  postingRule    PostingRule?
+  scheduledPosts ScheduledPost[]
+  postLogs       PostLog[]
+  openaiApiKey   String?
+}
+
+model XCredentials {
+  id               String  @id @default(cuid())
+  projectId        String  @unique
+  project          Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  apiKey           String
+  apiKeySecret     String
+  accessToken      String
+  accessTokenSecret String
+}
+
+model Category {
+  id               String   @id @default(cuid())
+  projectId        String
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name             String
+  targetAudience   String
+  tone             String
+  goal             String
+  ngWords          String   @default("") // Comma separated
+  forPlatforms     String   @default("x") // Comma separated
+
+  trendInspired    Boolean  @default(false)
+  trendMode        String?
+  trendSearchQuery String?
+
+  hashtags         String   @default("") // Comma separated or JSON
+  hashtagMode      String   @default("auto") // "auto" | "manual"
+  postLength       String   @default("normal") // "short" | "normal" | "long"
+
+  customInstructions String? // Free text for specific user guidance
+  useLatestNews      Boolean @default(false) // Toggle to fetch latest news
+  imagePrompt        String? // 画像生成時の追加プロンプト (スタイルや要素の指定)
+
+  isActive         Boolean  @default(true)
+
+  scheduledPosts   ScheduledPost[]
+  postLogs         PostLog[]
+}
+
+model PostingRule {
+  id             String   @id @default(cuid())
+  projectId      String   @unique
+  project        Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  maxPostsPerDay Int      @default(3)
+  postingMode    String
+  fixedTimes     String   @default("") // Comma separated
+  randomSlots    String? // JSON stringified
+  imageMode      String
+}
+
+model ScheduledPost {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  scheduledAt DateTime
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PostLog {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  postedAt    DateTime @default(now())
+  content     String
+  imageUrl    String?
+  status      String
+  platform    String
+  error       String?
+  trendSource String? // Store the trend used for generation
+}
+
