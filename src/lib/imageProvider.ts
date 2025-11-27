@@ -71,7 +71,7 @@ export class OpenAIImageProvider implements ImageProvider {
                 response_format: "url",
             });
 
-            return response.data[0].url || null;
+            return response.data?.[0]?.url || null;
         } catch (error) {
             console.error("OpenAI image generation failed:", error);
             return null;
