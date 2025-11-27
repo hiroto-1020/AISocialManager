@@ -5,13 +5,7 @@ const config: CapacitorConfig = {
   appName: 'AISocialManager',
   webDir: 'public',
   server: {
-    // 本番環境のURL（VercelのデプロイURL）をここに設定します
-    // url: 'https://your-project.vercel.app',
-
-    // ローカル開発用（PCのIPアドレスを指定すると実機で確認できます）
-    // url: 'http://192.168.1.X:3000',
-    // cleartext: true,
-
+    url: 'https://ai-social-manager-fh7s2dksf-hirotos-projects-f5e9bbfe.vercel.app/',
     androidScheme: 'https'
   }
 };

@@ -1,0 +1,13 @@
+name: Cron Dispatch
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # Run every 10 minutes
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Vercel Cron
+        run: curl -I https://ai-social-manager-fh7s2dksf-hirotos-projects-f5e9bbfe.vercel.app/api/cron/dispatch
