@@ -101,8 +101,8 @@ export async function PUT(
         }
     } catch (error) {
         if (error instanceof z.ZodError) {
-            console.error("Validation errors:", JSON.stringify(error.errors));
-            return NextResponse.json({ error: "Validation failed", details: error.errors }, { status: 400 });
+            console.error("Validation errors:", JSON.stringify(error.issues));
+            return NextResponse.json({ error: "Validation failed", details: error.issues }, { status: 400 });
         }
         console.error("PUT category error:", error instanceof Error ? error.message : "Unknown error");
         return NextResponse.json({ error: "Failed to update category" }, { status: 500 });
