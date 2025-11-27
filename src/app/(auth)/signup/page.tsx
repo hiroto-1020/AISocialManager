@@ -103,6 +103,11 @@ export default function SignupPage() {
                         ログイン (Login)
                     </Link>
                 </p>
+                <div className="mt-8 flex justify-center gap-4 text-xs text-gray-600">
+                    <Link href="/terms" className="hover:text-gray-400">利用規約</Link>
+                    <span>|</span>
+                    <Link href="/privacy" className="hover:text-gray-400">プライバシーポリシー</Link>
+                </div>
             </motion.div>
         </div>
     );

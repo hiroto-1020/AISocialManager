@@ -60,17 +60,29 @@ export default function DashboardPage() {
                         <span>使い方が分からない場合はこちら (HELP)</span>
                     </Link>
                 </div>
-                <Link href="/projects/new">
-                    <motion.button
-                        id="new-project-btn"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-6 py-3 font-bold text-cyan-400 ring-1 ring-cyan-500 hover:bg-cyan-500 hover:text-black transition-all"
-                    >
-                        <Plus size={18} />
-                        新規プロジェクト
-                    </motion.button>
-                </Link>
+                <div className="flex items-center gap-4">
+                    <Link href="/settings">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="rounded-full bg-gray-800 p-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors"
+                            title="設定"
+                        >
+                            <Settings size={24} />
+                        </motion.button>
+                    </Link>
+                    <Link href="/projects/new">
+                        <motion.button
+                            id="new-project-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-6 py-3 font-bold text-cyan-400 ring-1 ring-cyan-500 hover:bg-cyan-500 hover:text-black transition-all"
+                        >
+                            <Plus size={18} />
+                            新規プロジェクト
+                        </motion.button>
+                    </Link>
+                </div>
             </header>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
