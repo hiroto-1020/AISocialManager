@@ -41,6 +41,10 @@ export async function generatePostContent(
         lengthInstruction = "Keep it SHORT and punchy (100 characters or less).";
     } else if (category.postLength === 'long') {
         lengthInstruction = "Write a longer, detailed post (up to 280 characters). Break it into multiple paragraphs with line breaks.";
+    } else if (category.postLength === '80') {
+        lengthInstruction = "STRICT LIMIT: The output MUST be 80 characters or less. Do not exceed this under any circumstances.";
+    } else if (category.postLength === '120') {
+        lengthInstruction = "STRICT LIMIT: The output MUST be 120 characters or less. Do not exceed this under any circumstances.";
     } else {
         lengthInstruction = "Moderate length (around 150-200 characters is ideal). Use line breaks to separate thoughts.";
     }

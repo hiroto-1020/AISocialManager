@@ -14,7 +14,7 @@ const categorySchema = z.object({
     trendSearchQuery: z.string().optional().nullable(),
     hashtags: z.string().optional(),
     hashtagMode: z.enum(["auto", "manual"]).default("auto"),
-    postLength: z.enum(["short", "normal", "long"]).default("normal"),
+    postLength: z.enum(["short", "normal", "long", "80", "120"]).default("normal"),
     customInstructions: z.string().optional(),
     useLatestNews: z.boolean().default(false),
     imagePrompt: z.string().optional(),

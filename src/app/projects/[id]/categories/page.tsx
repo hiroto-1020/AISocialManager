@@ -217,9 +217,11 @@ export default function CategoriesPage({ params }: { params: Promise<{ id: strin
                                     value={formData.postLength || "normal"}
                                     onChange={(e) => setFormData({ ...formData, postLength: e.target.value })}
                                 >
-                                    <option value="short">少なめ (約80字)</option>
-                                    <option value="normal">普通 (約120字)</option>
-                                    <option value="long">多め (約140字)</option>
+                                    <option value="normal">Normal (Auto)</option>
+                                    <option value="80">80文字以内 (Strict)</option>
+                                    <option value="120">120文字以内 (Strict)</option>
+                                    <option value="short">Short (Old)</option>
+                                    <option value="long">Long (Old)</option>
                                 </select>
                             </div>
                         </div>
