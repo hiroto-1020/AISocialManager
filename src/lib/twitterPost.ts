@@ -65,9 +65,22 @@ export async function postToTwitter(
             return tweet.data.id;
         } else {
             console.log('[TwitterPost] Posting tweet without media (String Overload)...');
-            const debugText = `Hardcoded Test ${Date.now()}`;
-            console.log('[TwitterPost] Content:', debugText);
-            const tweet = await client.v2.tweet(debugText);
+
+            // Content Length Check (Simple heuristic for CJK)
+            // Twitter limit: 280 weighted characters. CJK counts as 2.
+            // Safe limit: 140 characters if any CJK character is present.
+            let contentToPost = text;
+            const hasCJK = /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/.test(text);
+            const limit = hasCJK ? 140 : 280;
+
+            if (contentToPost.length > limit) {
+                console.warn(`[TwitterPost] Content too long (${contentToPost.length} chars). Truncating to ${limit}.`);
+                // Simple truncation (could be improved to keep hashtags)
+                contentToPost = contentToPost.substring(0, limit - 4) + '...';
+            }
+
+            console.log('[TwitterPost] Final Content:', contentToPost);
+            const tweet = await client.v2.tweet(contentToPost);
             console.log('[TwitterPost] Tweet posted successfully, ID:', tweet.data.id);
             return tweet.data.id;
         }
