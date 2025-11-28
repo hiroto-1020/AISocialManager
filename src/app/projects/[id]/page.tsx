@@ -424,6 +424,29 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                     </div>
                 </div>
 
+                <div className="mb-12 border-b border-gray-800 pb-8">
+                    <h2 className="mb-4 text-xl font-semibold text-gray-300">デバッグ情報</h2>
+                    <div className="bg-black/50 p-4 rounded border border-gray-800 font-mono text-xs text-gray-400 space-y-2">
+                        <p>Project ID: {id}</p>
+                        <p>App Version: 1.0.1 (Debug)</p>
+                        <button
+                            onClick={async () => {
+                                if (!confirm("認証情報を検証しますか？")) return;
+                                try {
+                                    const res = await fetch(`/api/projects/${id}/verify-credentials`, { method: "POST" });
+                                    const data = await res.json();
+                                    alert(JSON.stringify(data, null, 2));
+                                } catch (e) {
+                                    alert("Verification Error: " + e);
+                                }
+                            }}
+                            className="mt-2 bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded"
+                        >
+                            認証情報を詳細検証 (Verify Credentials)
+                        </button>
+                    </div>
+                </div>
+
                 <div className="flex justify-center pt-4">
                     <Link href={`/projects/${id}/categories`} className="w-full">
                         <motion.button
