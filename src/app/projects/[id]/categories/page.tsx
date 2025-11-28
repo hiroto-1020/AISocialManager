@@ -100,7 +100,7 @@ export default function CategoriesPage({ params }: { params: Promise<{ id: strin
     };
 
     return (
-        <div className="min-h-screen bg-black text-white p-6">
+        <div className="min-h-screen bg-black text-white p-4 md:p-6">
             <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-neon-blue tracking-widest">CATEGORIES</h2>
                 <motion.button

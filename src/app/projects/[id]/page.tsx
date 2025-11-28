@@ -163,8 +163,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
     };
 
     return (
-        <div className="min-h-screen bg-black text-white p-8">
-            <motion.div className="mx-auto max-w-4xl rounded-xl bg-glass p-8 shadow-2xl border border-gray-800">
+        <div className="min-h-screen bg-black text-white p-4 pt-4 md:p-8">
+            <motion.div className="mx-auto max-w-4xl rounded-xl bg-glass p-4 md:p-8 shadow-2xl border border-gray-800">
                 <h1 className="mb-6 text-2xl font-bold text-neon-blue tracking-widest">プロジェクト設定</h1>
 
                 <div className="mb-12 border-b border-gray-800 pb-8">
@@ -196,7 +196,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                                 投稿モード
                             </label>
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 <label className="flex items-center gap-2 cursor-pointer">
                                     <input
                                         type="radio"
@@ -226,7 +226,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                                 画像生成
                             </label>
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 <label className="flex items-center gap-2 cursor-pointer">
                                     <input
                                         type="radio"

@@ -36,7 +36,7 @@ export default function LogsPage({ params }: { params: Promise<{ id: string }> }
     return (
         <div className="min-h-screen bg-black text-white p-6">
             <h2 className="mb-6 text-2xl font-bold text-neon-blue tracking-widest">POST LOGS</h2>
-            <div className="overflow-hidden rounded-xl border border-gray-800 bg-glass shadow-2xl">
+            <div className="overflow-x-auto rounded-xl border border-gray-800 bg-glass shadow-2xl">
                 <table className="min-w-full divide-y divide-gray-800">
                     <thead className="bg-gray-900/50">
                         <tr>

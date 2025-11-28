@@ -48,7 +48,7 @@ export default function DashboardPage() {
     };
 
     return (
-        <div className="min-h-screen p-6 text-white">
+        <div className="min-h-screen p-6 pt-16 text-white">
             <header id="dashboard-header" className="mb-8 flex flex-col gap-6 border-b border-gray-800 pb-6 md:mb-12 md:flex-row md:items-center md:justify-between">
                 <div>
                     <h1 className="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 md:text-4xl">

@@ -17,9 +17,9 @@ export default function HelpPage() {
     ];
 
     return (
-        <div className="min-h-screen p-6 md:p-12 text-white">
+        <div className="min-h-screen bg-black/90 p-6 pt-16 md:p-12 text-white">
             <div className="mx-auto max-w-6xl">
-                <Link href="/dashboard" className="mb-8 inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                <Link href="/dashboard" className="mb-8 inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors z-10 relative">
                     <ArrowLeft size={20} />
                     ダッシュボードに戻る
                 </Link>
@@ -52,7 +52,7 @@ export default function HelpPage() {
                     </div>
 
                     {/* Content Area */}
-                    <div className="min-h-[600px] rounded-2xl bg-glass p-8 border border-gray-800">
+                    <div className="min-h-[600px] rounded-2xl bg-gray-900/80 p-6 md:p-8 border border-gray-800 overflow-hidden">
                         {activeTab === "start" && <GettingStartedContent />}
                         {activeTab === "api" && <ApiGuideContent />}
                         {activeTab === "project" && <ProjectGuideContent />}
