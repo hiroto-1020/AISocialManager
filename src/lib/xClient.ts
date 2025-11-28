@@ -23,5 +23,8 @@ export async function getXClient(projectId: string) {
         accessSecret,
     });
 
+    console.log(`[xClient] Initialized client for project ${projectId}`);
+    console.log(`[xClient] Access Token Prefix: ${accessToken.substring(0, 5)}...`);
+
     return client;
 }

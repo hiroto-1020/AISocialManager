@@ -41,9 +41,10 @@ export async function postToTwitter(
     text: string,
     imageUrl: string | null
 ): Promise<string> {
+    let client;
     try {
         console.log('[TwitterPost] Getting X client for project:', projectId);
-        const client = await getXClient(projectId);
+        client = await getXClient(projectId);
 
         console.log('[TwitterPost] Text to post:', text.substring(0, 50) + '...');
         console.log('[TwitterPost] Image URL:', imageUrl ? 'Yes' : 'No');
