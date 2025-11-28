@@ -22,7 +22,7 @@ export default async function ProjectLayout({
 
     return (
         <div className="min-h-screen bg-black text-white">
-            <header className="border-b border-gray-800 bg-black/50 backdrop-blur-md">
+            <header className="border-b border-gray-800 bg-black/50 backdrop-blur-md pt-16">
                 <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
                     <h1 className="flex items-center text-xl font-bold tracking-tight md:text-2xl">
                         <Link href="/dashboard" className="text-gray-500 hover:text-cyan-400 transition-colors">

@@ -397,7 +397,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
 
                 <div className="mb-12 border-b border-gray-800 pb-8">
                     <h2 className="mb-4 text-xl font-semibold text-gray-300">手動アクション</h2>
-                    <div className="flex items-center justify-between rounded-lg bg-yellow-900/10 border border-yellow-500/30 p-4">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between rounded-lg bg-yellow-900/10 border border-yellow-500/30 p-4">
                         <div>
                             <h3 className="font-bold text-yellow-500">今すぐ投稿</h3>
                             <p className="text-sm text-gray-400">スケジュールを待たずに、即座に投稿を生成して予約/投稿します。</p>
@@ -407,7 +407,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                             whileTap={{ scale: 0.95 }}
                             onClick={handlePostNow}
                             disabled={isPosting}
-                            className={`rounded px-4 py-2 font-bold text-black transition-colors ${isPosting ? 'bg-gray-500 cursor-not-allowed' : 'bg-yellow-600 hover:bg-yellow-500'}`}
+                            className={`w-full sm:w-auto rounded px-4 py-2 font-bold text-black transition-colors ${isPosting ? 'bg-gray-500 cursor-not-allowed' : 'bg-yellow-600 hover:bg-yellow-500'}`}
                         >
                             {isPosting ? (
                                 <span className="flex items-center gap-2">

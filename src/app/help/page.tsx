@@ -112,7 +112,7 @@ function GettingStartedContent() {
                         localStorage.removeItem("hasSeenProTutorial");
                         window.location.href = "/dashboard";
                     }}
-                    className="rounded bg-cyan-600/20 border border-cyan-500 px-6 py-3 font-bold text-cyan-400 hover:bg-cyan-500 hover:text-black transition-all"
+                    className="rounded bg-cyan-600/20 border border-cyan-500 px-6 py-3 font-bold text-cyan-400 hover:bg-cyan-500 hover:text-black transition-all whitespace-nowrap"
                 >
                     チュートリアルをリセットして再開
                 </button>
