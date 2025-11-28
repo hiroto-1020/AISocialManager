@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { getXClient } from "@/lib/xClient";
+import { decrypt } from "@/lib/crypto";
 
 export async function POST(
     req: Request,
@@ -16,19 +17,26 @@ export async function POST(
         const { id } = await params;
         const client = await getXClient(id);
 
+        // Fetch raw credentials to show prefix
+        const creds = await prisma.xCredentials.findUnique({ where: { projectId: id } });
+        let tokenPrefix = "N/A";
+        if (creds && creds.accessToken) {
+            try {
+                const decrypted = decrypt(creds.accessToken);
+                tokenPrefix = decrypted.substring(0, 5) + "...";
+            } catch (e) {
+                tokenPrefix = "Decrypt Error";
+            }
+        }
+
         // 1. Check current user info (Verify Token Validity)
         const me = await client.v2.me();
-
-        // 2. Check Token Permissions (if possible via API, otherwise infer from success)
-        // v2.me() only requires Read.
-
-        // 3. Try a dry-run tweet (or just assume write if configured)
-        // There isn't a perfect "check write permission" endpoint without writing.
 
         return NextResponse.json({
             success: true,
             message: "Credentials are valid (Read Access Confirmed)",
-            user: me.data
+            user: me.data,
+            tokenPrefix: tokenPrefix
         });
 
     } catch (error: any) {
