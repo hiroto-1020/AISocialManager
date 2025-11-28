@@ -444,6 +444,21 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                         >
                             認証情報を詳細検証 (Verify Credentials)
                         </button>
+                        <button
+                            onClick={async () => {
+                                if (!confirm("【注意】実際にテストツイートを投稿します。\n実行しますか？")) return;
+                                try {
+                                    const res = await fetch(`/api/projects/${id}/debug-tweet`, { method: "POST" });
+                                    const data = await res.json();
+                                    alert(JSON.stringify(data, null, 2));
+                                } catch (e) {
+                                    alert("Debug Tweet Error: " + e);
+                                }
+                            }}
+                            className="mt-2 ml-2 bg-red-900/50 hover:bg-red-800 text-red-200 px-3 py-1 rounded border border-red-800"
+                        >
+                            強制ツイートテスト (Force Tweet)
+                        </button>
                     </div>
                 </div>
 
