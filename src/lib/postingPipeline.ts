@@ -106,11 +106,14 @@ export async function processScheduledPost(scheduledPostId: string) {
         let newsContext: string[] = [];
 
         if (category.trendInspired && category.trendMode) {
+            console.log('[Debug] Trend fetching is temporarily disabled for debugging 403 error.');
+            /*
             const xClient = await import('./xClient').then(m => m.getXClient(project.id));
             const trends = await fetchTrends(xClient, category.trendSearchQuery || 'trending');
             if (trends && trends.length > 0) {
                 trendContext = trends.slice(0, 5);
             }
+            */
         }
 
         if (category.useLatestNews) {
