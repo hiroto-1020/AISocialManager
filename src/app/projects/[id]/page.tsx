@@ -428,7 +428,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                     <h2 className="mb-4 text-xl font-semibold text-gray-300">デバッグ情報</h2>
                     <div className="bg-black/50 p-4 rounded border border-gray-800 font-mono text-xs text-gray-400 space-y-2">
                         <p>Project ID: {id}</p>
-                        <p>App Version: 1.0.1 (Debug)</p>
+                        <p>App Version: 1.0.2 (Fixes Applied)</p>
                         <button
                             onClick={async () => {
                                 if (!confirm("認証情報を検証しますか？")) return;
