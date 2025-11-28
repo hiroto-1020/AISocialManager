@@ -76,6 +76,28 @@ export async function postToTwitter(
             errors: error.errors,
             rateLimit: error.rateLimit,
         });
+
+        // Enhance error message for 403
+        if (error.code === 403 || error.message?.includes('403')) {
+            if (error.data?.detail?.includes('You are not allowed to create this Tweet')) {
+                throw new Error('ツイートの投稿が拒否されました。同じ内容を連続で投稿しているか、アカウントが制限されている可能性があります。');
+            }
+            if (error.data?.detail?.includes('Authenticating user is not allowed to create this Tweet')) {
+                throw new Error('書き込み権限がありません。Twitter Developer Portalで「Read and Write」に設定し、アクセストークンを再生成して設定し直してください。');
+            }
+            // Free Tier limitation for trends
+            if (error.data?.title === 'UsageCapExceeded' || error.data?.detail?.includes('UsageCapExceeded')) {
+                throw new Error('Twitter APIの利用制限(Free Tier)に達したか、許可されていない操作(トレンド取得など)を行いました。');
+            }
+            // Generic 403 with data
+            if (error.data?.detail) {
+                throw new Error(`Twitter API Error (403): ${error.data.detail}`);
+            }
+
+            // Fallback for any other 403
+            throw new Error('Twitter API 403 Forbidden: 権限がありません。Developer Portalで「Read and Write」権限になっているか確認し、必ずアクセストークンを再生成(Regenerate)して設定し直してください。');
+        }
+
         throw error;
     }
 }

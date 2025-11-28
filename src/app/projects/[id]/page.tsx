@@ -122,7 +122,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                 alert(`本日の投稿上限に達しました。\nあと ${hours}時間 ${minutes}分 で回復します。`);
             } else {
                 const data = await res.json();
-                alert("処理の開始に失敗しました: " + (data.error || "不明なエラー"));
+                alert("処理の開始に失敗しました: " + (data.details || data.error || "不明なエラー"));
             }
         } catch (error) {
             console.error(error);
