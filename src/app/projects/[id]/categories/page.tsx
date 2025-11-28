@@ -220,8 +220,6 @@ export default function CategoriesPage({ params }: { params: Promise<{ id: strin
                                     <option value="normal">Normal (Auto)</option>
                                     <option value="80">80文字以内 (Strict)</option>
                                     <option value="120">120文字以内 (Strict)</option>
-                                    <option value="short">Short (Old)</option>
-                                    <option value="long">Long (Old)</option>
                                 </select>
                             </div>
                         </div>

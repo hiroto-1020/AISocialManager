@@ -402,25 +402,30 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                             <h3 className="font-bold text-yellow-500">今すぐ投稿</h3>
                             <p className="text-sm text-gray-400">スケジュールを待たずに、即座に投稿を生成して予約/投稿します。</p>
                         </div>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={handlePostNow}
-                            disabled={isPosting}
-                            className={`w-full sm:w-auto rounded px-4 py-2 font-bold text-black transition-colors ${isPosting ? 'bg-gray-500 cursor-not-allowed' : 'bg-yellow-600 hover:bg-yellow-500'}`}
-                        >
-                            {isPosting ? (
-                                <span className="flex items-center gap-2">
-                                    <svg className="animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    実行中...
-                                </span>
-                            ) : (
-                                "実行する"
-                            )}
-                        </motion.button>
+                        <div className="flex flex-col items-end gap-2">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={handlePostNow}
+                                disabled={isPosting}
+                                className={`w-full sm:w-auto rounded px-4 py-2 font-bold text-black transition-colors ${isPosting ? 'bg-gray-500 cursor-not-allowed' : 'bg-yellow-600 hover:bg-yellow-500'}`}
+                            >
+                                {isPosting ? (
+                                    <span className="flex items-center gap-2">
+                                        <svg className="animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        実行中...
+                                    </span>
+                                ) : (
+                                    "実行する"
+                                )}
+                            </motion.button>
+                            <Link href={`/projects/${id}/error-help`} className="text-xs text-gray-500 hover:text-gray-300 underline">
+                                エラーが起きる場合はこちら
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
