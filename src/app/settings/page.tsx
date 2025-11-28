@@ -36,7 +36,7 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="min-h-screen p-6 text-white bg-black">
+        <div className="min-h-screen p-6 pt-20 text-white bg-black">
             <header className="mb-8 flex items-center gap-4">
                 <Link href="/dashboard" className="rounded-full bg-gray-800 p-2 hover:bg-gray-700 transition-colors">
                     <ArrowLeft size={24} />

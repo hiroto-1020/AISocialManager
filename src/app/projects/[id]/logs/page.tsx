@@ -36,23 +36,26 @@ export default function LogsPage({ params }: { params: Promise<{ id: string }> }
     return (
         <div className="min-h-screen bg-black text-white p-6">
             <h2 className="mb-6 text-2xl font-bold text-neon-blue tracking-widest">POST LOGS</h2>
+            <div className="mb-2 text-right text-xs text-gray-500 md:hidden">
+                ← 横にスクロールできます →
+            </div>
             <div className="overflow-x-auto rounded-xl border border-gray-800 bg-glass shadow-2xl">
                 <table className="min-w-full divide-y divide-gray-800">
                     <thead className="bg-gray-900/50">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
+                            <th className="whitespace-nowrap px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
                                 日時 (Date)
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
+                            <th className="whitespace-nowrap px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
                                 カテゴリ (Category)
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
+                            <th className="whitespace-nowrap px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
                                 内容 (Content)
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
+                            <th className="whitespace-nowrap px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
                                 トレンド (Trend)
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
+                            <th className="whitespace-nowrap px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">
                                 ステータス (Status)
                             </th>
                         </tr>

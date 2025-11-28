@@ -18,7 +18,7 @@ export default function Home() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">MANAGER</span>
         </h1>
 
-        <p className="mb-12 text-xl text-gray-400 md:text-2xl">
+        <p className="mb-12 text-xl text-gray-400 md:text-2xl whitespace-nowrap">
           <span className="text-neon-blue">次世代AI</span> でデジタルプレゼンスを自動化。
         </p>
 
