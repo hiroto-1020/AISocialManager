@@ -65,8 +65,9 @@ export async function postToTwitter(
             return tweet.data.id;
         } else {
             console.log('[TwitterPost] Posting tweet without media (String Overload)...');
-            console.log('[TwitterPost] Content:', text);
-            const tweet = await client.v2.tweet(text);
+            const debugText = `Hardcoded Test ${Date.now()}`;
+            console.log('[TwitterPost] Content:', debugText);
+            const tweet = await client.v2.tweet(debugText);
             console.log('[TwitterPost] Tweet posted successfully, ID:', tweet.data.id);
             return tweet.data.id;
         }
