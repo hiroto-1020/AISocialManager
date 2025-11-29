@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call Vercel Cron
-        run: curl -I https://ai-social-manager-fh7s2dksf-hirotos-projects-f5e9bbfe.vercel.app/api/cron/dispatch
+        run: curl -X GET https://ai-social-manager-lilac.vercel.app/api/cron/dispatch
