@@ -8,25 +8,36 @@ export async function scheduleDailyPosts() {
         },
     });
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    // Calculate "Today" in JST (UTC+9)
+    const now = new Date();
+    const jstOffset = 9 * 60 * 60 * 1000;
+    const nowJST = new Date(now.getTime() + jstOffset);
+
+    const year = nowJST.getUTCFullYear();
+    const month = nowJST.getUTCMonth();
+    const day = nowJST.getUTCDate();
+
+    // Start of today in JST (which is yesterday 15:00 UTC)
+    // We use this for querying existing posts
+    const startOfTodayJST = new Date(Date.UTC(year, month, day, 0 - 9, 0, 0, 0));
+    const endOfTodayJST = new Date(Date.UTC(year, month, day, 23 - 9, 59, 59, 999));
 
     for (const project of projects) {
         if (!project.postingRule || project.categories.length === 0) continue;
 
-        // Check if posts are already scheduled for today
+        // Check if posts are already scheduled for "Today JST"
         const existingPostsCount = await prisma.scheduledPost.count({
             where: {
                 projectId: project.id,
                 scheduledAt: {
-                    gte: today,
-                    lt: new Date(today.getTime() + 24 * 60 * 60 * 1000),
+                    gte: startOfTodayJST,
+                    lte: endOfTodayJST,
                 },
             },
         });
 
         if (existingPostsCount > 0) {
-            console.log(`[Scheduler] Posts already scheduled for project ${project.id} today.`);
+            console.log(`[Scheduler] Posts already scheduled for project ${project.id} today (JST).`);
             continue;
         }
 
@@ -39,19 +50,18 @@ export async function scheduleDailyPosts() {
             const times = rule.fixedTimes.split(',').filter(t => t.trim() !== '');
             scheduledTimes = times.slice(0, maxPosts).map(timeStr => {
                 const [hours, minutes] = timeStr.split(':').map(Number);
-                const date = new Date(today);
-                date.setHours(hours, minutes, 0, 0);
-                return date;
+                // Convert JST time to UTC Date object
+                // JST 09:00 -> UTC 00:00 (hours - 9)
+                return new Date(Date.UTC(year, month, day, hours - 9, minutes, 0, 0));
             });
         } else if (rule.postingMode === 'random') {
             // Random slots implementation (Simplified for MVP)
-            // Just pick 3 random times between 9:00 and 21:00
+            // Just pick 3 random times between 9:00 and 21:00 JST
             for (let i = 0; i < maxPosts; i++) {
-                const date = new Date(today);
-                const randomHour = 9 + Math.floor(Math.random() * 12); // 9 to 21
+                const randomHour = 9 + Math.floor(Math.random() * 12); // 9 to 21 (JST)
                 const randomMinute = Math.floor(Math.random() * 60);
-                date.setHours(randomHour, randomMinute, 0, 0);
-                scheduledTimes.push(date);
+                // Convert JST to UTC
+                scheduledTimes.push(new Date(Date.UTC(year, month, day, randomHour - 9, randomMinute, 0, 0)));
             }
             scheduledTimes.sort((a, b) => a.getTime() - b.getTime());
         }
